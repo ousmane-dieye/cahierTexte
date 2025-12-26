@@ -14,7 +14,7 @@
         Compte créé avec succès !
       </div>
 
-      <form id="accountForm">
+      <form id="accountForm" method="post" action="inscription.php">
         <div class="form-group">
           <label for="prenom">Prénom *</label>
           <input type="text" id="prenom" name="prenom" required />
@@ -54,7 +54,7 @@
 
         <div class="form-group">
           <label for="motdepasse">Mot de passe *</label>
-          <input type="password" id="motdepasse" name="motdepasse" required />
+          <input type="password" id="motdepasse" name="mot_de_passe" required />
           <div class="error-message" id="motdepasseError">
             Le mot de passe doit contenir au moins 6 caractères
           </div>
@@ -65,7 +65,7 @@
           <input
             type="password"
             id="confirmation"
-            name="confirmation"
+            name="confirmer_mdp"
             required
           />
           <div class="error-message" id="confirmationError">
