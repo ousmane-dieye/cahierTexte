@@ -49,6 +49,7 @@ form.addEventListener("submit", function (e) {
 
   if (isValid) {
     successMessage.style.display = "block";
+    form.submit();
     form.reset();
 
     setTimeout(() => {
