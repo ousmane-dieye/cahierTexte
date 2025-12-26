@@ -14,7 +14,7 @@
         Compte créé avec succès !
       </div>
 
-      <form id="accountForm" method="post" action="inscription.php">
+      <form id="accountForm" action="inscription.php" method="POST">
         <div class="form-group">
           <label for="prenom">Prénom *</label>
           <input type="text" id="prenom" name="prenom" required />
@@ -43,9 +43,9 @@
           <label for="classe">Classe *</label>
           <select id="classe" name="classe" required>
             <option value="">Sélectionnez une classe</option>
-            <option value="6eme">DUT1</option>
-            <option value="5eme">DUT2</option>
-            </option>
+            <option value="dut1">DUT1</option>
+            <option value="dut2">DUT2</option>
+            
           </select>
           <div class="error-message" id="classeError">
             Veuillez sélectionner une classe
