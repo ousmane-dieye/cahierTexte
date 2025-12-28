@@ -5,7 +5,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
         try{
-            require_once "./db.php";
+            require_once "../db.php";
             $_SESSION['old'] = $_POST;
 
             $nom = $_POST['nom'];

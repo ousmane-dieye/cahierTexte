@@ -1,5 +1,5 @@
 _<?php
-    require_once "./db.php";
+    require_once "../db.php";
 
     $email = $_POST['email'];
     $mot_de_passe = $_POST['mot_de_passe'];

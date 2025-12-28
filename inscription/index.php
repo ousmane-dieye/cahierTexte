@@ -92,7 +92,7 @@
           </div>
 
           <div class="btn_inscription">
-              <a href="connexion.html">Se connecter</a>
+              <a href="../connexion/connexion.html">Se connecter</a>
           </div>
       </div>
         
