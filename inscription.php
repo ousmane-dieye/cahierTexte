@@ -1,10 +1,12 @@
 <?php 
+    session_start();
 
+    
 
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
         try{
             require_once "./db.php";
-            
+            $_SESSION['old'] = $_POST;
 
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
@@ -34,7 +36,9 @@
             $stmt->execute([$email]);
 
             if ($stmt->rowCount() > 0){
-                exit("Email deja utilise");
+                    $_SESSION['error']['email'] = "Cet email est déjà utilisé";
+                    header("Location: index.php");
+                    exit;
             }
 
             if(strlen($mot_de_passe) < 6){
@@ -46,7 +50,8 @@
             }
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                exit("Email invalide");
+                echo("Email invalide");
+                exit();
             }
             $sql = "SELECT id_classe FROM classe WHERE nom_classe = ?";
             $stmt = $pdo->prepare($sql);
