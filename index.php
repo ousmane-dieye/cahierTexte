@@ -83,7 +83,19 @@
         </div>
 
         <button type="submit" class="btn-submit">Enregistrer</button>
-      </form>
+      
+        </form>
+
+      <div class="links-row">
+          <div class="forget">
+              <a href="#">Mot de passe oublié ?</a>
+          </div>
+
+          <div class="btn_inscription">
+              <a href="connexion.html">Se connecter</a>
+          </div>
+      </div>
+        
     </div>
 
     <script src="script.js"></script>

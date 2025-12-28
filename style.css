@@ -107,3 +107,10 @@ select {
   display: none;
   border: 1px solid #c3e6cb;
 }
+
+/* a modifier */
+
+.links-rows{
+  display: flex;
+  justify-content: space-between;
+}
