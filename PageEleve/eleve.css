@@ -1,0 +1,132 @@
+:root { 
+    --blue: #4318FF; 
+    --navy: #2B3674; 
+    --bg: #F4F7FE; 
+    --green: #05CD99; 
+}
+
+body { 
+    font-family: sans-serif; 
+    background: var(--bg); 
+    margin: 0; 
+    display: flex; 
+    color: var(--navy); 
+}
+
+.sidebar {
+    width: 80px; /* Taille initiale (icônes kesser) */
+    height: 100vh;
+    background: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    position: fixed;
+    border-right: 1px solid #E0E5F2;
+    overflow: hidden; /* pour neubb texte bi quand c'est réduit */
+    z-index: 100;
+}
+
+.sidebar:hover {
+    width: 260px; /* Taille normale ak icones ak lepp */
+}
+
+.logo { 
+    padding: 25px; 
+    font-weight: bold; 
+    color: var(--blue); 
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 25px; 
+    text-decoration: none;
+    color: #A3AED0;
+    transition: 0.3s;
+    white-space: nowrap; 
+}
+
+.nav-link i {
+    min-width: 30px; 
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-link span {
+    opacity: 0; /* Invisible au début */
+    margin-left: 20px;
+    transition: opacity 0.2s ease; 
+    pointer-events: none; 
+}
+
+.nav-link:hover { 
+    background: var(--blue); 
+    color: white; 
+}
+
+.sidebar:hover .nav-link span {
+    opacity: 1; /* Legui le texte devient visible */
+    pointer-events: auto;
+}
+
+.main-content { 
+    flex: 1; 
+    margin-left: 80px; 
+    padding: 40px; 
+}
+
+.header-welcome {
+    margin-bottom: 30px;
+}
+
+.welcome-message {
+    color: #A3AED0;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.welcome-message strong {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.header-welcome h1 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: var(--navy);
+}
+.task-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 15px; 
+    max-width: 600px; 
+}
+
+.card-todo { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 20px; 
+    display: flex; 
+    align-items: center; 
+    transition: 0.3s; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+}
+
+.card-todo:hover { 
+    transform: translateX(10px); 
+}
+
+.task-check { 
+    width: 25px; 
+    height: 25px; 
+    accent-color: var(--green); 
+    cursor: pointer; 
+}
+
+.info { 
+    margin-left: 20px; 
+}
+
+.completed { 
+    opacity: 0.5; 
+    text-decoration: line-through; 
+    background: #eafff0 !important; }
