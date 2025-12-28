@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="respo.css">
+    <title>Dashboard Délégué</title>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">DUT2 INFO</div>
+        <nav>
+            <a href="#" class="nav-link"><i>🏠</i> <span>Tableau de bord</span></a>
+            <a href="#" class="nav-link"><i>👥</i> <span>Ma Classe</span></a>
+            <a href="#" class="nav-link"><i>⚙️</i> <span>Paramètres</span></a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header-welcome">
+        <p class="welcome-message">Bienvenue <strong>Responsable</strong></p>
+        <h1>Gestion des Devoirs</h1>
+        <button id="openModal" class="btn-primary">+ Ajouter un Devoir</button>
+    </header>
+
+        <div class="task-grid">
+            <div class="card"><h3>Mathématiques</h3><p>DM sur les fonctions</p></div>
+            <div class="card"><h3>Anglais</h3><p>Essay: Digital Era</p></div>
+        </div>
+    </main>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <h2>Nouveau Devoir</h2>
+            
+            <input type="text" placeholder="Titre du devoir (ex: DM Géo)">
+            
+            <select>
+                <option value="">Choisir la matière</option>
+                <option value="se">SE</option>
+                <option value="msi">MSI</option>
+                <option value="java">POO/JAVA</option>
+                <option value="ro">RO</option>
+                <option value="statistiques">Statistiques</option>
+                <option value="economie">Gestion d'Entreprise</option>
+                <option value="gdp">Gestion de Projet</option>
+                <option value="anglais">Anglais</option>
+                <option value="reseau">Administraton Réseau</option>
+                <option value="entreprenariat">Entreprenariat et Innovation</option>
+            </select>
+            
+            <input type="date">
+
+            <div class="modal-actions">
+                <button id="closeModal" class="btn-cancel">Annuler</button>
+                <button class="btn-publish">Publier le devoir</button>
+            </div>
+        </div>
+    </div>
+    <script src="respo.js"></script>
+</body>
+</html>
