@@ -24,6 +24,12 @@
             
     $stmt->execute([]);
     $nmb_delegue = $stmt->fetchColumn();
+
+    $sql = "SELECT * from classe";
+    $stmt = $pdo->prepare($sql);      
+    $stmt->execute([]);
+    $liste_classe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +103,7 @@
 
             <div class="form-box" id="formBox">
                 <form id="classForm" action="ajouterClasse.php" method="POST" >
-                    <input type="text" id="name" name = "nom_classe" value ="<?= $_SESSION['old']['nom_classe'] ?? '' ?>" placeholder="Nom de la classe" required>
+                    <input type="text" id="name" name = "nom_classe"  placeholder="Nom de la classe" required>
                     <input type="number" id="students"  name= "nmr_eleve" placeholder="Nombre d'élèves" >
                     <input type="text" id="delegue" name = "resp" placeholder="Responsable (ou aucun)"> 
                     <select id="level" name = "niveau" required>
@@ -113,7 +119,16 @@
                 </form>
             </div>
 
-            <div class="cards" id="classCards"></div>
+            <div class="cards" id="classCards">
+                <p>Niveau ${levelVal}</p>
+                <h2>${nameVal}</h2>
+                <small>${studentsVal} élèves</small><br>
+                <small>Responsable : ${delegueVal || "Aucun"}</small>
+                <div class="class-actions">
+                <button class="edit">Modifier</button>
+                <button class="delete">Supprimer</button>
+                </div>
+            </div>
         </section>
 
         
@@ -237,19 +252,6 @@ form.onsubmit = e => {
 
     if (!nameVal || !studentsVal || !levelVal) return; 
 
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-        <p>Niveau ${levelVal}</p>
-        <h2>${nameVal}</h2>
-        <small>${studentsVal} élèves</small><br>
-        <small>Responsable : ${delegueVal || "Aucun"}</small>
-        <div class="class-actions">
-            <button class="edit">Modifier</button>
-            <button class="delete">Supprimer</button>
-        </div>
-    `;
 
     card.querySelector(".delete").onclick = () => {
         card.remove();
@@ -269,7 +271,7 @@ form.onsubmit = e => {
 
     cards.appendChild(card);
     updateTotal();
-
+    form.submit();
     form.reset();
     formBox.style.display = "none";
 };

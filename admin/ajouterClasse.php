@@ -7,8 +7,7 @@
         header('../inscription/index.php');
     }   
         require_once "../db.php";
-        echo("okkkkkkkkkkk");
-        echo($_POST['nom_classe']);
+
         $root_id = $_SESSION['id_etudiant'];
         $nom_classe = $_POST['nom_classe'];
         $niveau = $_POST['niveau'];
