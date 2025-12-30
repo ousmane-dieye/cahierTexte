@@ -1,4 +1,4 @@
-_<?php
+<?php
     require_once "../db.php";
 
     $email = $_POST['email'];
@@ -11,7 +11,7 @@ _<?php
         exit("Le champs mot de passe est requis");
     }
     
-    $sql = "SELECT mot_de_passe FROM ETUDIANT WHERE email = ?";
+    $sql = "SELECT id_etudiant, mot_de_passe FROM ETUDIANT WHERE email = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$email]);
 
@@ -26,5 +26,7 @@ _<?php
     }
 
  
+    session_start();
 
-    echo "connexion reussie";
+    $_SESSION['id_etudiant'] = $user['id_etudiant'];
+    header('location: ../PageEleve/eleve.php');

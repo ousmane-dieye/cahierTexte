@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 26 déc. 2025 à 00:23
+-- Généré le : dim. 28 déc. 2025 à 19:37
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -29,10 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classe` (
   `id_classe` int(11) NOT NULL,
-  `root_id` int(11) NOT NULL,
   `nom_classe` varchar(50) NOT NULL,
-  `niveau` enum('premiere_annee','deuxieme_annee','troisieme_annee','quatrieme_annee','cinquieme_annee') NOT NULL
+  `niveau` enum('premiere_annee','deuxieme_annee','troisieme_annee','quatrieme_annee','cinquieme_annee') NOT NULL,
+  `root_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `classe`
+--
+
+INSERT INTO `classe` (`id_classe`, `nom_classe`, `niveau`, `root_id`) VALUES
+(1, 'dut1', 'premiere_annee', 1);
 
 -- --------------------------------------------------------
 
@@ -57,8 +64,18 @@ CREATE TABLE `etudiant` (
   `prenom` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `mot_de_passe` varchar(255) NOT NULL,
-  `classe_id` int(11) NOT NULL
+  `classe_id` int(11) NOT NULL,
+  `role` enum('etudiant','delegue','root') DEFAULT 'etudiant'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`id_etudiant`, `nom`, `prenom`, `email`, `mot_de_passe`, `classe_id`, `role`) VALUES
+(1, 'Diouf', 'amsOuz', 'ladetail@gmail.com', '$2y$10$tE//gc6ZIoqAfAAM6/RozeiWBtsLqlON79zzAo1V.8KsF9q8fwyha', 1, 'root'),
+(2, 'Diouf', 'amsOuz', 'ladet@gmail.com', '$2y$10$1g5dTJjXcbIfamQU56UNLexxoknkURdPC4..3P/m06oY5tXDKDM3S', 1, 'etudiant'),
+(3, 'Diouf', 'amsOuz', 'ladetaill@gmail.com', '$2y$10$uDhJmIspBhTCutyn635.E.fIfSY9BnL/8ycbYOX.eNP60M8r73rGy', 1, 'etudiant');
 
 -- --------------------------------------------------------
 
@@ -80,21 +97,6 @@ CREATE TABLE `matiere` (
 CREATE TABLE `matiere_classe` (
   `matiere_id` int(11) NOT NULL,
   `classe_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `root`
---
-
-CREATE TABLE `root` (
-  `id_root` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mot_de_passe` varchar(255) NOT NULL,
-  `date_creation` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -152,13 +154,6 @@ ALTER TABLE `matiere_classe`
   ADD KEY `classe_id` (`classe_id`);
 
 --
--- Index pour la table `root`
---
-ALTER TABLE `root`
-  ADD PRIMARY KEY (`id_root`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
 -- Index pour la table `tache`
 --
 ALTER TABLE `tache`
@@ -175,25 +170,19 @@ ALTER TABLE `tache`
 -- AUTO_INCREMENT pour la table `classe`
 --
 ALTER TABLE `classe`
-  MODIFY `id_classe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_classe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  MODIFY `id_etudiant` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_etudiant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `matiere`
 --
 ALTER TABLE `matiere`
   MODIFY `id_matiere` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `root`
---
-ALTER TABLE `root`
-  MODIFY `id_root` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `tache`
@@ -209,7 +198,7 @@ ALTER TABLE `tache`
 -- Contraintes pour la table `classe`
 --
 ALTER TABLE `classe`
-  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`root_id`) REFERENCES `root` (`id_root`);
+  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`root_id`) REFERENCES `etudiant` (`id_etudiant`);
 
 --
 -- Contraintes pour la table `delegue`

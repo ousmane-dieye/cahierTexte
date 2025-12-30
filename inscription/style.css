@@ -110,7 +110,16 @@ select {
 
 /* a modifier */
 
-.links-rows{
+.links-row{
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
 }
