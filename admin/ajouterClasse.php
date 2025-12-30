@@ -33,7 +33,7 @@
             exit;     
         }
 
-        $sql = "insert into classe(nom_classe, niveau) values (?,?)";
+        $sql = "INSERT into classe(nom_classe, niveau) values (?,?)";
         $stmt = $pdo ->  prepare($sql);
 
         $stmt->execute([$nom_classe, $niveau]);
