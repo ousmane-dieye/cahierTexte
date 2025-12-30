@@ -11,7 +11,7 @@
         exit("Le champs mot de passe est requis");
     }
     
-    $sql = "SELECT id_etudiant, mot_de_passe FROM ETUDIANT WHERE email = ?";
+    $sql = "SELECT * FROM ETUDIANT WHERE email = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$email]);
 
@@ -29,4 +29,10 @@
     session_start();
 
     $_SESSION['id_etudiant'] = $user['id_etudiant'];
-    header('location: ../PageEleve/eleve.php');
+    if($user['role'] === 'root'){
+        header('location: ../admin/admin.php');
+        exit;
+    }else{
+        header('location: ../PageEleve/eleve.php');
+        exit;    
+    }

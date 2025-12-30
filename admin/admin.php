@@ -1,3 +1,30 @@
+<?php 
+    session_start();
+    require_once "../db.php";
+
+    if(!isset($_SESSION['id_etudiant'])){
+        header('loaction: ../index.php');
+    }
+
+    $sql = "select count(*) from classe";
+    $stmt = $pdo->prepare($sql);      
+    $stmt->execute([]);
+    $nmb_classe = $stmt->fetchColumn();
+
+    $sql = "select count(id_etudiant) from etudiant";
+    $stmt = $pdo->prepare($sql);
+            
+    $stmt->execute([]);
+    $nmb_etudiant = $stmt->fetchColumn();
+
+
+    $sql = "select count(id_etudiant) from etudiant where role = 'delegue'";
+    $stmt = $pdo->prepare($sql);
+            
+    $stmt->execute([]);
+    $nmb_delegue = $stmt->fetchColumn();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,15 +74,15 @@
             <div class="cards">
                 <div class="card">
                     <p>Total Classes</p>
-                    <h2>0</h2>
+                    <h2><?php echo($nmb_classe); ?></h2>
                 </div>
                 <div class="card">
                     <p>Total Users</p>
-                    <h2>0</h2>
+                    <h2><?php echo($nmb_etudiant); ?></h2>
                 </div>
                 <div class="card">
                     <p>Total Delegates</p>
-                    <h2>0</h2>
+                    <h2><?php echo($nmb_delegue); ?></h2>
                 </div>
             </div>
         </section>
@@ -68,17 +95,17 @@
         <button class="add_classe" id="add_classe">➕ Ajouter une Classe</button>
 
             <div class="form-box" id="formBox">
-                <form id="classForm">
-                    <input type="text" id="name" placeholder="Nom de la classe" required>
-                    <input type="number" id="students" placeholder="Nombre d'élèves" required>
-                    <input type="text" id="delegue" placeholder="Responsable (ou aucun)">
-                    <select id="level" required>
+                <form id="classForm" action="ajouterClasse.php" method="post" >
+                    <input type="text" id="name" name = "nom_classe" value ="<?= $_SESSION['old']['nom_classe'] ?? '' ?>" placeholder="Nom de la classe" required>
+                    <input type="number" id="students"  name= "nmr_eleve" placeholder="Nombre d'élèves" >
+                    <input type="text" id="delegue" name = "resp" placeholder="Responsable (ou aucun)"> 
+                    <select id="level" name = "niveau" required>
                         <option value="">Année</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="premiere_annee">1</option>
+                        <option value="deuxieme_annee">2</option>
+                        <option value="troisieme_annee">3</option>
+                        <option value="quatrieme_annee">4</option>
+                        <option value="cinquieme_annee">5</option>
                     </select>
                     <button type="submit">Ajouter</button>
                     <button type="button" onclick="formBox.style.display='none'">Annuler</button>
