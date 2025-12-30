@@ -21,7 +21,7 @@
             header('location: ../connexion/connexion.php');
         }
 
-        $sql = "select * from classe where nom_classe = ?";
+        $sql = "SELECT * from classe where nom_classe = ?";
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([$nom_classe]);
