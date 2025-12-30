@@ -6,19 +6,20 @@
         header('loaction: ../index.php');
     }
 
-    $sql = "select count(*) from classe";
+    
+    $sql = "SELECT count(*) from classe";
     $stmt = $pdo->prepare($sql);      
     $stmt->execute([]);
     $nmb_classe = $stmt->fetchColumn();
 
-    $sql = "select count(id_etudiant) from etudiant";
+    $sql = "SELECT count(id_etudiant) from etudiant";
     $stmt = $pdo->prepare($sql);
             
     $stmt->execute([]);
     $nmb_etudiant = $stmt->fetchColumn();
 
 
-    $sql = "select count(id_etudiant) from etudiant where role = 'delegue'";
+    $sql = "SELECT count(id_etudiant) from etudiant where role = 'delegue'";
     $stmt = $pdo->prepare($sql);
             
     $stmt->execute([]);
@@ -95,7 +96,7 @@
         <button class="add_classe" id="add_classe">➕ Ajouter une Classe</button>
 
             <div class="form-box" id="formBox">
-                <form id="classForm" action="ajouterClasse.php" method="post" >
+                <form id="classForm" action="ajouterClasse.php" method="POST" >
                     <input type="text" id="name" name = "nom_classe" value ="<?= $_SESSION['old']['nom_classe'] ?? '' ?>" placeholder="Nom de la classe" required>
                     <input type="number" id="students"  name= "nmr_eleve" placeholder="Nombre d'élèves" >
                     <input type="text" id="delegue" name = "resp" placeholder="Responsable (ou aucun)"> 
