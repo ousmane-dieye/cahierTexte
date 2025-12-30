@@ -33,9 +33,9 @@
             exit;     
         }
 
-        $sql = "INSERT into classe(nom_classe, niveau) values (?,?)";
+        $sql = "INSERT into classe(nom_classe, niveau, root_id) values (?,?,?)";
         $stmt = $pdo ->  prepare($sql);
 
-        $stmt->execute([$nom_classe, $niveau]);
+        $stmt->execute([$nom_classe, $niveau,$root_id]);
     
     }
