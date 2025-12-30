@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="connexion.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Connexion</h1>
+
+    <form>
+        <div class="box">
+            <i class="fa fa-envelope"></i>
+            <input type="email" placeholder="Adresse email" >
+        </div>
+
+        <div class="box password-box">
+            <i class="fa fa-lock"></i>
+            <input type="password" id="password" placeholder="Mot de passe" >
+            <i class="fa fa-eye voir-password" id="voirIcon"></i>
+        </div>
+
+
+        <button type="submit" id="btn_connexion">Se connecter</button>
+    </form>
+
+    <div class="links-row">
+        <div class="forget">
+            <a href="#">Mot de passe oublié ?</a>
+        </div>
+
+        <div class="btn_inscription">
+            <a href="inscription.html">S’inscrire</a>
+        </div>
+    </div>
+</div>
+
+<script src="connexion.js"></script>
+</body>
+</html>

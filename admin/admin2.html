@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Cahier de Texte - Admin</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.menu-title {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 20px;
+}
+
+.sidebar button {
+    border: none;
+    background: none;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+    background: rgba(26,115,232,0.1);
+}
+
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background: linear-gradient(90deg,#4facfe,#00f2fe);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* ===== CARDS ===== */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.card h2 {
+    margin-top: 5px;
+}
+
+/* ===== CLASS ACTIONS ===== */
+.class-actions {
+    display: none;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.card:hover .class-actions {
+    display: flex;
+}
+
+.class-actions button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.edit {
+    background: #1a73e8;
+    color: white;
+}
+
+.delete {
+    background: #ff4b5c;
+    color: white;
+}
+
+/* ===== FORM ===== */
+.add-btn {
+    margin-bottom: 15px;
+    padding: 8px 15px;
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form-box {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.form-box button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+    <h2 class="logo">Cahier de Texte</h2>
+
+    <p class="menu-title">MAIN</p>
+    <button class="active" onclick="showSection('dashboard')">🏠 Dashboard</button>
+
+    <p class="menu-title">CLASSES</p>
+    <button onclick="showSection('classes')">🏫 Gestion des Classes</button>
+
+    <button class="logout">LOGOUT</button>
+</aside>
+
+<main class="main">
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section active">
+    <header class="topbar">
+        <div>
+            <small>Pages / Dashboard</small>
+            <h1>Dashboard</h1>
+        </div>
+        <div class="badge">Admin</div>
+    </header>
+
+    <div class="cards">
+        <div class="card">
+            <p>Total Classes</p>
+            <h2 id="totalClasses">0</h2>
+        </div>
+        <div class="card">
+            <p>Total Users</p>
+            <h2>0</h2>
+        </div>
+        <div class="card">
+            <p>Total Delegates</p>
+            <h2>0</h2>
+        </div>
+    </div>
+</section>
+
+<!-- CLASSES -->
+
+
+<footer>
+© 2026 – CahierTexte | 36G ESP
+</footer>
+
+</main>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

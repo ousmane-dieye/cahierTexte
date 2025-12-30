@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.section h2{
+    text-align: center;
+}
+.sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+
+.logo {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 30px;
+}
+
+.menu-title {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.sidebar button {
+    border: none;
+    background: none;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.95em;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+    background: rgba(111, 164, 214, 0.12);
+}
+
+.logout {
+    margin-top: auto;  
+    background: #00f2fe;
+    color: #000;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    align-self: center;
+}
+
+.btn_logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; 
+}
+
+.logout:hover {
+    background: #00c9d9;
+    color: #333;
+}
+
+
+.main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.topbar small {
+    color: #777;
+}
+
+.topbar h1 {
+    font-size: 1.8em;
+}
+
+.badge {
+    background: linear-gradient(90deg,#4facfe,#00f2fe);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    min-width: 220px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card p {
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.card h2 {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.card small {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.class-actions {
+    display: none;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.card:hover .class-actions {
+    display: flex;
+}
+
+.class-actions button {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.class-actions .edit {
+    background: #1a73e8;
+    color: #fff;
+}
+
+.class-actions .edit:hover {
+    background: #155ab6;
+}
+
+.class-actions .delete {
+    background: #ff4b5c;
+    color: #fff;
+}
+
+.class-actions .delete:hover {
+    background: #e63946;
+}
+
+.add_classe {
+    margin-bottom: 15px;
+    padding: 8px 16px;
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.add_classe:hover {
+    background: #155ab6;
+}
+
+.form-box {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    max-width: 420px;
+    margin-bottom: 25px;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.form-box button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.form-box button[type="submit"] {
+    background: #1a73e8;
+    color: #fff;
+}
+
+.form-box button[type="submit"]:hover {
+    background: #155ab6;
+}
+
+.form-box button[type="button"] {
+    background: #ccc;
+    margin-left: 6px;
+}
+
+.form-box button[type="button"]:hover {
+    background: #aaa;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    color: #777;
+    margin-top: auto;
+    font-size: 0.9em;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 20px;
+}
+
+#searchUser {
+    width: 250px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
