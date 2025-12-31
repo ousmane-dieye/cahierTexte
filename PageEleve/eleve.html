@@ -9,7 +9,7 @@
     <aside class="sidebar">
         <div class="logo">DUT2 INFO</div>
         <nav>
-            <a href="#" class="nav-link"><i>📝</i> <span>Mes Devoirs</span></a>
+            <a href="#" class="nav-link active"><i>📝</i> <span>Mes Devoirs</span></a>
             <a href="#" class="nav-link"><i>📊</i> <span>Progression</span></a>
         </nav>
     </aside>
@@ -18,16 +18,48 @@
         <header class="header-welcome">
         <p class="welcome-message">Bienvenue <strong>Ousmane</strong></p>
         <h1>Mes Devoirs à Faire</h1>
+        <a href="deconnexion.php" class="btn-logout">
+        <i>🚪</i> <span>Déconnexion</span>
+    </a>
         </header>
-        <div class="task-grid">
-            <div class="card-todo">
-                <input type="checkbox" class="task-check">
-                <div class="info">
-                    <h3>Administration Réseau</h3>
-                    <p>Rapport TP SSH</p>
+
+        <section id="view-devoirs">
+            <div class="task-grid">
+                <div class="card-todo" data-deadline="2024-01-05T14:00:00">
+                    <input type="checkbox" class="task-check">
+                    <div class="info">
+                        <h3>Administration Réseau</h3>
+                        <p>Rapport TP SSH</p>
+                        <div class="timer-container">
+                        Temps restant : <span class="countdown-timer">--:--:--</span>
+                    </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="view-progression" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Progression Globale</span>
+                    <div class="progress-circle-container">
+                        <h2 id="stat-perc">0%</h2>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Devoirs Restants</span>
+                    <h2 id="stat-rem">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Rendus (Total)</span>
+                    <h2 id="stat-done">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Ratio complété</span>
+                    <p><span id="stat-ratio-done">0</span> / <span id="stat-total">0</span></p>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="eleve.js"></script>
 </body>
