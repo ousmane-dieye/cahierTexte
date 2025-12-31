@@ -7,8 +7,7 @@
         header('../inscription/index.php');
     }   
         require_once "../db.php";
-        echo("okkkkkkkkkkk");
-        echo($_POST['nom_classe']);
+
         $root_id = $_SESSION['id_etudiant'];
         $nom_classe = $_POST['nom_classe'];
         $niveau = $_POST['niveau'];
@@ -37,5 +36,6 @@
         $stmt = $pdo ->  prepare($sql);
 
         $stmt->execute([$nom_classe, $niveau,$root_id]);
+        header("location: admin.php#classes");
     
     }
