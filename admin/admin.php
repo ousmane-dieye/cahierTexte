@@ -118,16 +118,25 @@
                     <button type="button" onclick="formBox.style.display='none'">Annuler</button>
                 </form>
             </div>
-
-            <div class="cards" id="classCards">
-                <p>Niveau ${levelVal}</p>
-                <h2>${nameVal}</h2>
-                <small>${studentsVal} élèves</small><br>
-                <small>Responsable : ${delegueVal || "Aucun"}</small>
-                <div class="class-actions">
-                <button class="edit">Modifier</button>
-                <button class="delete">Supprimer</button>
-                </div>
+            <div class="cards">
+                <?php for ($i=0;$i<count($liste_classe); $i++){ ?>
+                    <div class="card">
+                        <p>Niveau: <?php echo($liste_classe[$i]['niveau'])?></p>
+                        <h2><?php echo(strtoupper($liste_classe[$i]['nom_classe']))?></h2>
+                        <small>Responsable : <?php $sql = "SELECT * from etudiant where role = 'delegue' and classe_id = ?"; 
+                            $stmt = $pdo->prepare($sql); 
+                            $stmt->execute([$liste_classe[$i]['id_classe']]); 
+                            $liste_delegue =  $stmt->fetchAll(PDO::FETCH_ASSOC); 
+                        for($j=0; $j<count($liste_delegue); $j++){
+                            echo($liste_delegue[$j]['prenom']." ".$liste_delegue[$j]['nom'] );
+                        }
+                        ?></small>
+                        <div class="class-actions">
+                            <button class="edit">Modifier</button>
+                            <button class="delete">Supprimer</button>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </section>
 
@@ -253,23 +262,23 @@ form.onsubmit = e => {
     if (!nameVal || !studentsVal || !levelVal) return; 
 
 
-    card.querySelector(".delete").onclick = () => {
-        card.remove();
-        updateTotal();
-    };
+    // card.querySelector(".delete").onclick = () => {
+    //     card.remove();
+    //     updateTotal();
+    // };
 
-    card.querySelector(".edit").onclick = () => {
-        nameInput.value = nameVal;
-        studentsInput.value = studentsVal;
-        delegueInput.value = delegueVal;
-        levelInput.value = levelVal;
+    // card.querySelector(".edit").onclick = () => {
+    //     nameInput.value = nameVal;
+    //     studentsInput.value = studentsVal;
+    //     delegueInput.value = delegueVal;
+    //     levelInput.value = levelVal;
 
-        formBox.style.display = "block";
-        card.remove();
-        updateTotal();
-    };
+    //     formBox.style.display = "block";
+    //     card.remove();
+    //     updateTotal();
+    // };
 
-    cards.appendChild(card);
+    // cards.appendChild(card);
     updateTotal();
     form.submit();
     form.reset();

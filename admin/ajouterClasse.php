@@ -36,5 +36,6 @@
         $stmt = $pdo ->  prepare($sql);
 
         $stmt->execute([$nom_classe, $niveau,$root_id]);
+        header("location: admin.php#classes");
     
     }
