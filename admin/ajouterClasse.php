@@ -7,11 +7,19 @@
         header('../inscription/index.php');
     }   
         require_once "../db.php";
-
+        $id  = $_POST['id_classe'] ?? null;
         $root_id = $_SESSION['id_etudiant'];
         $nom_classe = $_POST['nom_classe'];
         $niveau = $_POST['niveau'];
-
+        if ($id) {
+            // MODIFIER
+            $sql = "UPDATE classe 
+                    SET nom_classe = ?, niveau = ?
+                    WHERE id_classe = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$nom_classe, $niveau, $id]);
+            header("location: admin.php#classes");
+        } else {
         if(!$nom_classe){
             exit("Champs nom classe requis");
         }else if(!$niveau){
@@ -39,3 +47,4 @@
         header("location: admin.php#classes");
     
     }
+}

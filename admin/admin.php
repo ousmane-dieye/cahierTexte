@@ -103,9 +103,8 @@
 
             <div class="form-box" id="formBox">
                 <form id="classForm" action="ajouterClasse.php" method="POST" >
+                    <input type="hidden" id="id_classe" name="id_classe">
                     <input type="text" id="name" name = "nom_classe"  placeholder="Nom de la classe" required>
-                    <input type="number" id="students"  name= "nmr_eleve" placeholder="Nombre d'élèves" >
-                    <input type="text" id="delegue" name = "resp" placeholder="Responsable (ou aucun)"> 
                     <select id="level" name = "niveau" required>
                         <option value="">Année</option>
                         <option value="premiere_annee">1</option>
@@ -114,7 +113,7 @@
                         <option value="quatrieme_annee">4</option>
                         <option value="cinquieme_annee">5</option>
                     </select>
-                    <button type="submit">Ajouter</button>
+                    <button type="submit" id= "submitBtn">Ajouter</button>
                     <button type="button" onclick="formBox.style.display='none'">Annuler</button>
                 </form>
             </div>
@@ -132,8 +131,21 @@
                         }
                         ?></small>
                         <div class="class-actions">
-                            <button class="edit">Modifier</button>
-                            <button class="delete">Supprimer</button>
+                        <button class="edit"
+                            onclick="editClasse(
+                                <?= $liste_classe[$i]['id_classe'] ?>,
+                                '<?= addslashes($liste_classe[$i]['nom_classe']) ?>',
+                                '<?= $liste_classe[$i]['niveau'] ?>'
+                            )">
+                            Modifier
+                        </button>
+                            
+
+                            <button class="delete"
+                                onclick="if(confirm('Supprimer cette classe ?')) 
+                                window.location='supprimerClasse.php?id=<?php echo $liste_classe[$i]['id_classe']; ?>'">
+                                Supprimer
+                            </button>
                         </div>
                     </div>
                 <?php } ?>
@@ -255,11 +267,9 @@ form.onsubmit = e => {
     e.preventDefault();
 
     const nameVal = nameInput.value.trim();
-    const studentsVal = studentsInput.value.trim();
-    const delegueVal = delegueInput.value.trim();
     const levelVal = levelInput.value;
 
-    if (!nameVal || !studentsVal || !levelVal) return; 
+    if (!nameVal || !levelVal) return; 
 
 
     // card.querySelector(".delete").onclick = () => {
@@ -285,7 +295,20 @@ form.onsubmit = e => {
     formBox.style.display = "none";
 };
 
+function editClasse(id, nom, niveau) {
+    document.getElementById("id_classe").value = id;
+    document.getElementById("name").value = nom;
+    document.getElementById("level").value = niveau;
 
+    document.getElementById("submitBtn").textContent = "Modifier";
+    formBox.style.display = "block";
+}
+add_classe.onclick = () => {
+    form.reset();
+    document.getElementById("id_classe").value = "";
+    document.getElementById("submitBtn").textContent = "Ajouter";
+    formBox.style.display = "block";
+};
 
 const addUserBtn = document.getElementById("addUserBtn");
 const userFormBox = document.getElementById("userFormBox");
